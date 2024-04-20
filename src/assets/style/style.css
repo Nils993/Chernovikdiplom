@@ -1,0 +1,27 @@
+* {
+  --white: rgb(255, 255, 255);
+  --darkGreen: rgb(30, 40, 39);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Epilogue;
+}
+
+a {
+  text-decoration: none;
+}
+
+.center {
+  padding-left: calc(50% - 590px);
+  padding-right: calc(50% - 590px);
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+}/*# sourceMappingURL=style.css.map */
