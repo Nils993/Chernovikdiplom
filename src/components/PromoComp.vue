@@ -89,6 +89,7 @@ export default {
 
 <style lang="scss" scoped>
 .promo {
+  padding-bottom: 80px;
   background: rgb(20, 20, 20);
   &-text {
     display: flex;

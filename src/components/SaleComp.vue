@@ -1,5 +1,5 @@
 <template>
-  <section class="sale center">
+  <section id="sale" class="sale center">
     <h2 class="sale__title">Sale</h2>
     <div class="sale-content">
       <div class="sale-imglist">
@@ -99,7 +99,7 @@ export default {
   }
   &__bigimg {
     margin-left: 10px;
-
+    object-fit: cover;
     background: var(--colorText);
     width: 100%;
     height: 100%;

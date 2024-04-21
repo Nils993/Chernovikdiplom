@@ -1,5 +1,5 @@
 <template>
-  <section class="catalog center">
+  <section id="catalog" class="catalog center">
     <h2 class="catalog__title">Catalog</h2>
     <div class="catalog-list">
       <div class="catalog-item" v-for="(watch, index) in watches" :key="index">
