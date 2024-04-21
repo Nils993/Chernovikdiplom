@@ -223,9 +223,9 @@
       <p class="footer-bottom__copyright">
         ©2022 The Watch Spot. All rights reserved.
       </p>
-      <div class="footer-bottom__text">
-        <p>Privacy Policy</p>
-        <p>Terms of Service</p>
+      <div class="footer-bottom__links">
+        <a class="footer-bottom__link" href="#">Privacy Policy</a>
+        <a class="footer-bottom__link" href="#">Terms of Service</a>
       </div>
     </div>
   </footer>
@@ -279,9 +279,12 @@ export default {
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-  &__text {
+  &__links {
     display: flex;
     gap: 18px;
+  }
+  &__link {
+    color: rgb(198, 205, 209);
   }
 }
 </style>

@@ -2,27 +2,72 @@
   <section id="catalog" class="catalog center">
     <h2 class="catalog__title">Catalog</h2>
     <div class="catalog-list">
-      <div class="catalog-item" v-for="(watch, index) in watches" :key="index">
+      <div
+        @click="toggleSelection(watch)"
+        :class="{ selected: selectedWatch === watch }"
+        class="catalog-item"
+        v-for="watch in watches"
+        :key="watch.id"
+      >
         <img :src="watch.src" alt="" />
         <h3 class="catalog-item__name">{{ watch.name }}</h3>
         <p class="catalog-item__price">{{ watch.price }}</p>
       </div>
     </div>
     <div class="catalog-wrap__btn">
-      <button class="catalog__btn">Buy now</button>
+      <button class="catalog__btn" @click="openBuyForm">Buy now</button>
     </div>
+    <BuyComp
+      v-if="showBuyForm && selectedWatch"
+      :selectedWatch="selectedWatch"
+      @closeForm="closeBuyForm"
+    />
   </section>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import BuyComp from "@/components/BuyComp.vue";
 
 export default {
+  components: {
+    BuyComp,
+  },
   data() {
-    return {};
+    return {
+      selectedWatch: null,
+      showBuyForm: false,
+    };
   },
   computed: {
     ...mapState(["watches"]),
+  },
+  methods: {
+    // selectWatch(watch) {
+    //   this.selectedWatch = watch;
+    //   console.log(watch.id);
+    // },
+    toggleSelection(watch) {
+      if (this.isSelected(watch)) {
+        this.selectedWatch = null;
+        this.showBuyForm = false;
+      } else {
+        this.selectedWatch = watch;
+      }
+    },
+    isSelected(watch) {
+      return this.selectedWatch === watch;
+    },
+    openBuyForm() {
+      if (!this.selectedWatch) {
+        alert("Please select a watch first.");
+        return;
+      }
+      this.showBuyForm = true;
+    },
+    closeBuyForm() {
+      this.showBuyForm = false;
+    },
   },
 };
 </script>
@@ -68,6 +113,7 @@ export default {
     justify-content: flex-end;
   }
   &__btn {
+    box-sizing: border-box;
     padding: 18px 35px;
     color: var(--white);
     font-size: 12px;
@@ -79,6 +125,13 @@ export default {
     border-radius: 8px;
     align-self: flex-end;
     margin-top: 80px;
+    border: 1px solid var(--darkGreen);
+    &:hover {
+      border: 1px solid var(--white);
+    }
   }
+}
+.selected {
+  background: rgba(20, 20, 20, 0.1);
 }
 </style>
