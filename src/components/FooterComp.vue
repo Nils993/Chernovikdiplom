@@ -133,7 +133,15 @@
           1678 S. Pioneer Road Salt Lake City UT&nbsp;84104
         </p>
       </div>
-      <NavComp />
+      <ul class="nav">
+        <li @click="closeMenu">
+          <a class="nav__item" href="#about">About us</a>
+        </li>
+        <li @click="closeMenu">
+          <a class="nav__item" href="#catalog">Catalog</a>
+        </li>
+        <li @click="closeMenu"><a class="nav__item" href="#sale">Sale</a></li>
+      </ul>
       <div class="icon">
         <a href="https://www.facebook.com" target="_blank">
           <svg
@@ -232,23 +240,23 @@
 </template>
 
 <script>
-import NavComp from "@/components/NavComp.vue";
 export default {
   name: "footerComp",
-  components: {
-    NavComp,
-  },
+  components: {},
 };
 </script>
 
 <style lang="scss" scoped>
 .footer {
+  max-width: 100%;
   background: var(--darkGreen);
   padding-top: 100px;
   padding-bottom: 32px;
   &-wrap {
     display: flex;
     justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
   }
   &__text {
     max-width: 180px;
@@ -264,8 +272,18 @@ export default {
   gap: 20px;
 }
 .nav {
+  display: flex;
   flex-direction: column;
   gap: 20px;
+  list-style-type: none;
+  &__item {
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 .icon {
   display: flex;

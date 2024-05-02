@@ -20,7 +20,9 @@
         <p class="sale-discription__tag">Product tag: PEWJK2227003</p>
         <div class="sale-discription__price">
           <span>€700</span>
-          <span class="sale-discription__price-discont">€1000</span>
+          <span class="sale-discription__price-discont"
+            ><strike>€1000</strike></span
+          >
         </div>
 
         <hr />
@@ -76,41 +78,41 @@ export default {
   padding-bottom: 160px;
   &__title {
     color: var(--darkGreen);
-    font-size: 40px;
+    font-size: clamp(32px, 5vw, 40px);
+    line-height: clamp(40px, 5vw, 44px);
     font-weight: 600;
-    line-height: 44px;
   }
   &-content {
     margin-top: 80px;
     display: grid;
     grid-template-columns: 146px 406px 430px;
     justify-content: center;
-    height: 615px;
   }
   &-imglist {
     display: grid;
-    grid-template-rows: repeat(4, 146px);
+    grid-template-rows: repeat(4, auto);
     gap: 10px;
 
     &__item {
-      height: 146px;
+      height: auto;
       background: var(--colorText);
+      max-width: 100%;
     }
   }
   &__bigimg {
     margin-left: 10px;
     object-fit: cover;
     background: var(--colorText);
-    width: 100%;
+    max-width: 100%;
     height: 100%;
   }
   &-discription {
     margin-left: 50px;
     &__name {
       color: var(--colorText);
-      font-size: 38px;
+      font-size: clamp(24px, 5vw, 38px);
+      line-height: clamp(24px, 5vw, 40px);
       font-weight: 400;
-      line-height: 40px;
     }
     &__tag {
       color: var(--colorText);
@@ -150,6 +152,28 @@ export default {
       opacity: 0.5;
       margin-bottom: 20px;
     }
+  }
+}
+@media (max-width: 1000px) {
+  .sale-content {
+    display: grid;
+    grid-template-columns: 146px 406px;
+    grid-template-rows: auto auto; /* Добавляем автоматическую высоту для последнего блока */
+    justify-content: center;
+    height: auto; /* Убираем фиксированную высоту */
+  }
+  .sale-discription {
+    grid-column: span 2;
+    margin-top: 40px;
+    margin-left: 0px;
+  }
+}
+@media (max-width: 600px) {
+  .sale-content {
+    grid-template-columns: 80px 245px;
+  }
+  .sale__bigimg {
+    max-width: 100%;
   }
 }
 </style>

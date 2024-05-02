@@ -1,48 +1,100 @@
 <template>
-  <div class="buy center" v-if="selectedWatch">
-    <div class="catalog-item">
-      <img :src="selectedWatch.src" alt="" />
-      <h3 class="catalog-item__name">{{ selectedWatch.name }}</h3>
-      <p class="catalog-item__price">{{ selectedWatch.price }}</p>
-    </div>
-    <form class="form" action="#">
-      <label class="form__label"
-        >Full name
-        <input
-          class="form__input"
-          type="text"
-          placeholder="Enter your full name"
-        />
-      </label>
-      <label class="form__label"
-        >Email
-        <input
-          class="form__input"
-          type="email"
-          placeholder="Enter your email"
-        />
-      </label>
-      <label class="form__label"
-        >Card number
-        <input class="form__input" type="text" placeholder="Enter card" />
-      </label>
+  <div class="buy-wrap">
+    <div class="buy center" v-if="selectedWatch">
+      <button class="close-button" @click="closeForm">
+        <svg
+          width="24.000000"
+          height="24.000000"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <desc>Created with Pixso.</desc>
+          <defs>
+            <clipPath id="clip61_117">
+              <rect
+                id="x"
+                width="24.000000"
+                height="24.000000"
+                fill="white"
+                fill-opacity="0"
+              />
+            </clipPath>
+          </defs>
+          <rect
+            id="x"
+            width="24.000000"
+            height="24.000000"
+            fill="#FFFFFF"
+            fill-opacity="0"
+          />
+          <g clip-path="url(#clip61_117)">
+            <path
+              id="Vector"
+              d="M18 6L6 18"
+              stroke="#141414"
+              stroke-opacity="1.000000"
+              stroke-width="1.300000"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            />
+            <path
+              id="Vector"
+              d="M6 6L18 18"
+              stroke="#141414"
+              stroke-opacity="1.000000"
+              stroke-width="1.300000"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            />
+          </g>
+        </svg>
+      </button>
+      <div class="catalog-item">
+        <img :src="selectedWatch.src" alt="" />
+        <h3 class="catalog-item__name">{{ selectedWatch.name }}</h3>
+        <p class="catalog-item__price">{{ selectedWatch.price }}</p>
+      </div>
+      <form class="form" action="#">
+        <label class="form__label"
+          >Full name
+          <input
+            class="form__input"
+            type="text"
+            placeholder="Enter your full name"
+          />
+        </label>
+        <label class="form__label"
+          >Email
+          <input
+            class="form__input"
+            type="email"
+            placeholder="Enter your email"
+          />
+        </label>
+        <label class="form__label"
+          >Card number
+          <input class="form__input" type="text" placeholder="Enter card" />
+        </label>
 
-      <label class="form__label"
-        >Comments
-        <textarea
-          class="form__input"
-          cols="40"
-          rows="10"
-          placeholder="Enter your text"
-        ></textarea>
-      </label>
-      <button class="form__but">submit</button>
-      <p class="form__agree">
-        By clicking on “Submit” button, you agree to our
-        <a href="#">Privacy Policy</a> ,<br />
-        and allow Promodo to use this information for marketing purposes.
-      </p>
-    </form>
+        <label class="form__label"
+          >Comments
+          <textarea
+            class="form__input"
+            cols="40"
+            rows="10"
+            placeholder="Enter your text"
+          ></textarea>
+        </label>
+        <button class="form__but">submit</button>
+        <p class="form__agree">
+          By clicking on “Submit” button, you agree to our
+          <a href="#">Privacy Policy</a> ,<br />
+          and allow Promodo to use this information for marketing purposes.
+        </p>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -63,10 +115,7 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      // Handle form submission logic
-      // For example, send form data to the server
-      // Then emit event to close the form
+    closeForm() {
       this.$emit("closeForm");
     },
   },
@@ -74,17 +123,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.buy-wrap {
+  display: flex;
+  z-index: 5;
+}
 .buy {
   padding-top: 40px;
   padding-bottom: 40px;
   display: flex;
   gap: 50px;
   justify-content: center;
+  align-items: center;
+}
+.close-button {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  background: none;
+  border: none;
 }
 .catalog {
   &-item {
     padding-top: 30px;
+    max-width: 100%;
     width: 276px;
+    text-align: center;
     &__name {
       white-space: nowrap;
       overflow: hidden;
@@ -107,6 +170,7 @@ export default {
 .form {
   display: flex;
   flex-direction: column;
+  max-width: 100%;
   width: 508px;
   &__label {
     display: flex;
@@ -143,6 +207,7 @@ export default {
     text-transform: uppercase;
     margin-top: 16px;
     margin-bottom: 12px;
+    width: 100%;
   }
   &__agree {
     color: rgba(20, 20, 20, 0.4);
@@ -153,6 +218,13 @@ export default {
       color: rgba(20, 20, 20, 0.4);
       text-decoration: underline;
     }
+  }
+}
+@media (max-width: 750px) {
+  .buy {
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>

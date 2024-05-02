@@ -1,6 +1,6 @@
 <template>
   <section class="promo center">
-    <div class="promo-text">
+    <div class="collection">
       <h1 class="promo-text__heading">
         Welcome to our collection of premium watches
       </h1>
@@ -9,8 +9,6 @@
         personality and lifestyle. From classic designs to modern ones, we have
         a watch to suit every taste and occasion.
       </p>
-    </div>
-    <div class="collection">
       <div class="slider-container">
         <div class="slider">
           <img
@@ -56,7 +54,12 @@
         </button>
       </div>
       <div class="banner">
-        <img width="676" src="../assets/img/Rectangle 1.png" alt="baner" />
+        <img
+          class="banner-img"
+          width="676"
+          src="../assets/img/Rectangle 1.png"
+          alt="baner"
+        />
       </div>
     </div>
   </section>
@@ -92,13 +95,15 @@ export default {
   padding-bottom: 80px;
   background: rgb(20, 20, 20);
   &-text {
-    display: flex;
-    justify-content: space-between;
     &__heading {
       color: var(--white);
-      font-size: 60px;
+      // font-size: 60px;
+      font-size: clamp(38px, 5vw, 60px);
       font-weight: 600;
-      line-height: 62px;
+      line-height: clamp(40px, 5vw, 62px);
+      grid-column-start: 1;
+      grid-column-end: span 2;
+      margin-bottom: 40px;
     }
     &__discript {
       max-width: 300px;
@@ -106,23 +111,28 @@ export default {
       font-size: 14px;
       font-weight: 300;
       line-height: 18px;
+      grid-column-start: 3;
     }
   }
 }
 .collection {
   margin-top: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-
+.slider-container {
+  grid-column: 1/2;
+  align-self: end;
+}
 .slider {
+  max-width: 436px;
   display: flex;
   justify-content: center;
-  max-width: 436px;
+  width: 436px;
   max-height: 255px;
   background: var(--darkGreen);
   transition: transform 0.3s ease;
+  margin-right: 64px;
 }
 .arrow {
   margin-top: 20px;
@@ -138,6 +148,79 @@ export default {
 
   &-right {
     margin-left: 12px;
+  }
+}
+.banner {
+  width: 100%;
+  grid-column: 2/4;
+  grid-row: 2/3;
+  &-img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 1000px) {
+  .promo-text__heading {
+    margin-bottom: 40px;
+  }
+  .slider-container {
+    margin-bottom: 40px;
+  }
+  .slider {
+    margin-right: 20px;
+  }
+  .collection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    min-height: auto;
+  }
+  .promo-text__heading {
+    margin-bottom: 60px;
+    grid-column: 1/4;
+  }
+  .promo-text__discript {
+    grid-row: 2/3;
+    padding-top: 70px;
+  }
+
+  .banner {
+    grid-row: 3/4;
+    grid-column: 1/4;
+  }
+}
+@media (max-width: 750px) {
+  .slider {
+    width: 90%;
+  }
+  .collection {
+    grid-template-columns: 1fr;
+  }
+  .promo-text__discript {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    justify-self: end;
+    padding-top: 0px;
+    margin-bottom: 40px;
+  }
+  .banner {
+    grid-row: 4/5;
+  }
+}
+@media (max-width: 500px) {
+  .slider {
+    width: 75%;
+  }
+  .collection {
+    margin-top: 0px;
+  }
+}
+@media (max-width: 400px) {
+  .banner-img {
+    max-width: 92%;
+    height: 410px;
+    object-fit: cover;
   }
 }
 </style>

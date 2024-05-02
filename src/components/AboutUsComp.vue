@@ -1,6 +1,6 @@
 <template>
   <section id="about" class="about center">
-    <h2 class="about__title">About us</h2>
+    <h2 class="about__title">About&nbsp;us</h2>
     <div class="about-content">
       <div class="about-info">
         <p class="about__discription">
@@ -32,8 +32,6 @@ export default {};
   justify-content: space-between;
   padding-top: 50px;
   padding-bottom: 50px;
-  &-content {
-  }
   &-info {
     display: flex;
     gap: 45px;
@@ -41,20 +39,31 @@ export default {};
   }
   &__title {
     color: var(--darkGreen);
-    font-size: 40px;
+    font-size: clamp(32px, 5vw, 40px);
+    line-height: clamp(40px, 5vw, 44px);
     font-weight: 600;
-    line-height: 44px;
+    margin-right: 50px;
   }
   &__discription {
-    width: 400px;
+    max-width: 400px;
     color: rgb(20, 20, 20);
     font-size: 14px;
     font-weight: 300;
     line-height: 18px;
+    max-width: 100%;
   }
   &__banner {
-    max-width: 892px;
+    width: 100%;
+    max-width: 100%;
     height: auto;
+  }
+}
+@media (max-width: 850px) {
+  .about {
+    flex-direction: column;
+    &__title {
+      margin-bottom: 40px;
+    }
   }
 }
 </style>

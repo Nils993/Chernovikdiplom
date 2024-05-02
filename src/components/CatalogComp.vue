@@ -9,7 +9,7 @@
         v-for="watch in watches"
         :key="watch.id"
       >
-        <img :src="watch.src" alt="" />
+        <img class="catalog__img" :src="watch.src" alt="" />
         <h3 class="catalog-item__name">{{ watch.name }}</h3>
         <p class="catalog-item__price">{{ watch.price }}</p>
       </div>
@@ -43,10 +43,6 @@ export default {
     ...mapState(["watches"]),
   },
   methods: {
-    // selectWatch(watch) {
-    //   this.selectedWatch = watch;
-    //   console.log(watch.id);
-    // },
     toggleSelection(watch) {
       if (this.isSelected(watch)) {
         this.selectedWatch = null;
@@ -74,14 +70,15 @@ export default {
 
 <style lang="scss" scoped>
 .catalog {
+  max-width: 100%;
   background: var(--white);
   padding-top: 160px;
   padding-bottom: 160px;
   &__title {
     color: var(--darkGreen);
-    font-size: 40px;
+    font-size: clamp(32px, 5vw, 40px);
+    line-height: clamp(40px, 5vw, 44px);
     font-weight: 600;
-    line-height: 44px;
   }
   &-list {
     display: grid;
@@ -133,5 +130,34 @@ export default {
 }
 .selected {
   background: rgba(20, 20, 20, 0.1);
+}
+@media (max-width: 1200px) {
+  .catalog {
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(3, 276px);
+      gap: 24px;
+    }
+    &-list {
+      justify-content: center;
+    }
+  }
+}
+@media (max-width: 850px) {
+  .catalog {
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(2, 276px);
+      gap: 24px;
+    }
+    &-list {
+      justify-content: center;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .catalog-list {
+    grid-template-columns: repeat(1, 276px);
+  }
 }
 </style>

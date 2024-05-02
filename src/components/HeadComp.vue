@@ -181,4 +181,14 @@ export default {
     text-align: center;
   }
 }
+@media (max-width: 700px) {
+  .header-number {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .logo {
+    z-index: 10;
+  }
+}
 </style>
