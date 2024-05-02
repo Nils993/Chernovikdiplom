@@ -1,65 +1,66 @@
 <template>
   <div class="buy-wrap">
     <div class="buy center" v-if="selectedWatch">
-      <button class="close-button" @click="closeForm">
-        <svg
-          width="24.000000"
-          height="24.000000"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <desc>Created with Pixso.</desc>
-          <defs>
-            <clipPath id="clip61_117">
-              <rect
-                id="x"
-                width="24.000000"
-                height="24.000000"
-                fill="white"
-                fill-opacity="0"
-              />
-            </clipPath>
-          </defs>
-          <rect
-            id="x"
-            width="24.000000"
-            height="24.000000"
-            fill="#FFFFFF"
-            fill-opacity="0"
-          />
-          <g clip-path="url(#clip61_117)">
-            <path
-              id="Vector"
-              d="M18 6L6 18"
-              stroke="#141414"
-              stroke-opacity="1.000000"
-              stroke-width="1.300000"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            />
-            <path
-              id="Vector"
-              d="M6 6L18 18"
-              stroke="#141414"
-              stroke-opacity="1.000000"
-              stroke-width="1.300000"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            />
-          </g>
-        </svg>
-      </button>
       <div class="catalog-item">
         <img :src="selectedWatch.src" alt="" />
         <h3 class="catalog-item__name">{{ selectedWatch.name }}</h3>
         <p class="catalog-item__price">{{ selectedWatch.price }}</p>
       </div>
-      <form class="form" action="#">
+      <form class="form" action="/">
+        <button class="close-button" @click="closeForm">
+          <svg
+            width="24.000000"
+            height="24.000000"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <desc>Created with Pixso.</desc>
+            <defs>
+              <clipPath id="clip61_117">
+                <rect
+                  id="x"
+                  width="24.000000"
+                  height="24.000000"
+                  fill="white"
+                  fill-opacity="0"
+                />
+              </clipPath>
+            </defs>
+            <rect
+              id="x"
+              width="24.000000"
+              height="24.000000"
+              fill="#FFFFFF"
+              fill-opacity="0"
+            />
+            <g clip-path="url(#clip61_117)">
+              <path
+                id="Vector"
+                d="M18 6L6 18"
+                stroke="#141414"
+                stroke-opacity="1.000000"
+                stroke-width="1.300000"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              />
+              <path
+                id="Vector"
+                d="M6 6L18 18"
+                stroke="#141414"
+                stroke-opacity="1.000000"
+                stroke-width="1.300000"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              />
+            </g>
+          </svg>
+        </button>
         <label class="form__label"
           >Full name
           <input
+            required
             class="form__input"
             type="text"
             placeholder="Enter your full name"
@@ -68,6 +69,7 @@
         <label class="form__label"
           >Email
           <input
+            required
             class="form__input"
             type="email"
             placeholder="Enter your email"
@@ -75,7 +77,16 @@
         </label>
         <label class="form__label"
           >Card number
-          <input class="form__input" type="text" placeholder="Enter card" />
+          <input
+            required
+            class="form__input"
+            type="text"
+            placeholder="Enter card"
+            inputmode="numeric"
+            @keypress="onlyNumber"
+            minlength="16"
+            maxlength="16"
+          />
         </label>
 
         <label class="form__label"
@@ -118,14 +129,27 @@ export default {
     closeForm() {
       this.$emit("closeForm");
     },
+    onlyNumber(event) {
+      const charCode = event.which ? event.which : event.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .buy-wrap {
-  display: flex;
-  z-index: 5;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  height: 100vh;
+  width: 100%;
+  z-index: 1000;
+  background: white;
 }
 .buy {
   padding-top: 40px;
@@ -137,8 +161,8 @@ export default {
 }
 .close-button {
   position: absolute;
-  top: 26px;
-  right: 26px;
+  top: -12px;
+  right: -25px;
   background: none;
   border: none;
 }
@@ -168,6 +192,7 @@ export default {
   }
 }
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
   max-width: 100%;

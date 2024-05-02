@@ -222,5 +222,8 @@ export default {
     height: 410px;
     object-fit: cover;
   }
+  .promo-text__discript {
+    padding-right: 25px;
+  }
 }
 </style>
