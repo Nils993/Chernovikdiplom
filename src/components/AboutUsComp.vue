@@ -26,44 +26,4 @@
 export default {};
 </script>
 
-<style lang="scss" scoped>
-.about {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  &-info {
-    display: flex;
-    gap: 45px;
-    margin-bottom: 40px;
-  }
-  &__title {
-    color: var(--darkGreen);
-    font-size: clamp(32px, 5vw, 40px);
-    line-height: clamp(40px, 5vw, 44px);
-    font-weight: 600;
-    margin-right: 50px;
-  }
-  &__discription {
-    max-width: 400px;
-    color: rgb(20, 20, 20);
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 18px;
-    max-width: 100%;
-  }
-  &__banner {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-}
-@media (max-width: 850px) {
-  .about {
-    flex-direction: column;
-    &__title {
-      margin-bottom: 40px;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

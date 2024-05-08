@@ -114,7 +114,6 @@ export default {
   props: {
     selectedWatch: {
       type: Object,
-      required: true,
     },
   },
   data() {
