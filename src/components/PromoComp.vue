@@ -1,10 +1,10 @@
 <template>
   <section class="promo center">
     <div class="collection">
-      <h1 class="promo-text__heading">
+      <h1 class="promo__heading">
         Welcome to our collection of premium watches
       </h1>
-      <p class="promo-text__discript">
+      <p class="promo__discript">
         Our watches are not just timepieces, but also an expression of your
         personality and lifestyle. From classic designs to modern ones, we have
         a watch to suit every taste and occasion.

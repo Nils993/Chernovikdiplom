@@ -74,9 +74,9 @@
   .sale-content {
     display: grid;
     grid-template-columns: 146px 406px;
-    grid-template-rows: auto auto; /* Добавляем автоматическую высоту для последнего блока */
+    grid-template-rows: auto auto;
     justify-content: center;
-    height: auto; /* Убираем фиксированную высоту */
+    height: auto;
   }
   .sale-discription {
     grid-column: span 2;
@@ -86,9 +86,12 @@
 }
 @media (max-width: 600px) {
   .sale-content {
-    grid-template-columns: 80px 245px;
+    grid-template-columns: 100px 280px;
   }
-  .sale__bigimg {
-    max-width: 100%;
+
+  @media (max-width: 400px) {
+    .sale-content {
+      grid-template-columns: 80px 235px;
+    }
   }
 }
